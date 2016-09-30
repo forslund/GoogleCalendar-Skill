@@ -46,6 +46,11 @@ Restart Skills
     ./start.sh skills
 
 
+When you restart the ./start.sh skills.
+The web browser where you will have to approve access will be open.
+Type your gmail user and password associate to your calendar.
+And then select "Allow"
+
 ----------
 
 
