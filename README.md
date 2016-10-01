@@ -2,7 +2,7 @@
 ===================
 
 
-An ability to use with Mycroft which allow to interact with google calendar.
+An skill to use with Mycroft which allow to interact with google calendar.
 In the following release will be possible add events
 
 ----------
