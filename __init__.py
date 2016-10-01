@@ -278,7 +278,7 @@ class GoogleCalendarSkill(MycroftSkill):
 		return
 	# Calculate in range from the day after tomorrow plus 7 days 
 	weekDayName = message.metadata.get("WeekdayKeyword")
-	self.until_events(otherDateStart(2), otherDateEnd(8),7, weekDayName)
+	self.until_events(otherDateStart(1), otherDateEnd(8),7, weekDayName)
 
     def handle_xdays_events(self, message):
 	if not loggedIn():
@@ -369,7 +369,7 @@ class GoogleCalendarSkill(MycroftSkill):
 					complete_phrase = phrase_part_1 + rangeDate  + phrase_part_2 + phrase_part_3
 					self.speak(complete_phrase)
 
-			elif (evaluateWeekDay):		# compare the day name
+			elif (evaluateWeekDay):		# compare the day name 
 				day_name_compare = (calendar.day_name[start.weekday()])
 				if (day_name_compare.upper() == weekDayName.upper()):
 					#rangeDate = weekDayName
