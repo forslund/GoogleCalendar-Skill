@@ -120,9 +120,12 @@ class GoogleCalendarSkill(MycroftSkill):
 	"""
     	Verify credentials to make google calendar connectionimport calendar
     	"""
+        argv = sys.argv
+        sys.argv = []
         self.credentials = get_credentials()
         http = self.credentials.authorize(httplib2.Http())
         self.calendar_event = discovery.build('calendar', 'v3', http=http)
+        sys.argv = argv
 
     def __init__(self):
         super(GoogleCalendarSkill, self).__init__('GoogleCalendarSkill')
