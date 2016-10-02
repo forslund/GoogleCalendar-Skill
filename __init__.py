@@ -102,7 +102,10 @@ def otherDateEnd(until):
     return otherDayEnd
 
 def parse_datetime_string(string):
-    return datetime.datetime.strptime(string[:-6], "%Y-%m-%dT%H:%M:%S")
+    if '+' in string:
+        return datetime.datetime.strptime(string, "%Y-%m-%dT%H:%M:%S+%f")
+    else:
+        return datetime.datetime.strptime(string, "%Y-%m-%dT%H:%M:%S-%f")
 
 
 def checkLocation(eventDict):
