@@ -101,6 +101,12 @@ def otherDateEnd(until):
     otherDayEnd = otherDayEnd.isoformat() + 'Z'
     return otherDayEnd
 
+def parse_datetime_string(string):
+    if '+' in string:
+        return datetime.datetime.strptime(string, "%Y-%m-%dT%H:%M:%S+%f")
+    else:
+        return datetime.datetime.strptime(string, "%Y-%m-%dT%H:%M:%S-%f")
+
 
 def checkLocation(eventDict):
     locationFlag = True if "location" in eventDict else False
@@ -212,14 +218,14 @@ class GoogleCalendarSkill(MycroftSkill):
 	    description = ''
             start = event['start'].get('dateTime', event['start'].get('date'))
 	    start = start[:22]+start[(22+1):]
-	    start = datetime.datetime.strptime(start, "%Y-%m-%dT%H:%M:%S-%f")
+	    start = parse_datetime_string(start)
 	    startHour = ("{:d}:{:02d}".format(start.hour, start.minute))
 	    startHour = time.strptime(startHour,"%H:%M")
 	    startHour = time.strftime("%I:%M %p",startHour)
 	    if (startHour[0]=='0'): startHour = startHour.replace('0','',1)
 	    end = event['end'].get('dateTime', event['end'].get('date'))
 	    end = end[:22]+end[(22+1):]
-	    end = datetime.datetime.strptime(end, "%Y-%m-%dT%H:%M:%S-%f")
+	    end = parse_datetime_string(end)
 	    endHour = ("{:d}:{:02d}".format(end.hour, end.minute))
 	    endHour = time.strptime(endHour,"%H:%M")
 	    endHour = time.strftime("%I:%M %p",endHour)
@@ -312,7 +318,7 @@ class GoogleCalendarSkill(MycroftSkill):
 		for event in events:
 			start = event['start'].get('dateTime', event['start'].get('date'))
 			start = start[:22]+start[(22+1):]
-			start = datetime.datetime.strptime(start, "%Y-%m-%dT%H:%M:%S-%f")
+			start = parse_datetime_string(start)
 			date_compare = datetime.datetime.strptime(start.strftime("%x"),"%m/%d/%y")
 	    		startHour = ("{:d}:{:02d}".format(start.hour, start.minute))
 	    		startHour = time.strptime(startHour,"%H:%M")
@@ -320,7 +326,7 @@ class GoogleCalendarSkill(MycroftSkill):
 	    		if (startHour[0]=='0'): startHour = startHour.replace('0','',1)
 	    		end = event['end'].get('dateTime', event['end'].get('date'))
 	    		end = end[:22]+end[(22+1):]
-	    		end = datetime.datetime.strptime(end, "%Y-%m-%dT%H:%M:%S-%f")
+	    		end = parse_datetime_string(end)
 	    		endHour = ("{:d}:{:02d}".format(end.hour, end.minute))
 	    		endHour = time.strptime(endHour,"%H:%M")
 	    		endHour = time.strftime("%I:%M %p",endHour)
