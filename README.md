@@ -20,6 +20,12 @@ Enter inside mycroft virtualenv
 
     git clone  https://github.com/jcasoft/GoogleCalendar-Skill.git
 
+If you are running on a headless device without local webbrowser authentication needs to be done before starting the skill. This can be done by running
+
+    python GoogleCalendarSkill
+
+copy the link into a browser, follow the steps and then enter the code.
+
 <i class="icon-cog"></i>Add 'GoogleCalendar-Skill' section in your Mycroft configuration file on:
 
     /home/pi/.mycroft/mycroft.ini
